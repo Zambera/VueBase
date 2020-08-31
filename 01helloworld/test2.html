@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue文本渲染三种方法</title>
+</head>
+
+<body>
+    <div id="app">
+        <!--   {}}/v-text不能解析html元素，只会照样输出 -->
+        <p>{{hello}}</p>
+        <p v-text='hello'></p>
+        <p v-html='hello'></p>
+    </div>
+</body>
+<script src="./js/vue.js"></script>
+<script>
+    new Vue({
+        //配置对象：属性名是一些特定的名称，每一个属性就是一个选项
+
+        el: '#app', //选择器字符串 ==> 用于 指定模板的根元素
+        data: { //包含一些数据属性的对象 ==> 为模板提供数据
+            hello: '<span>hello world</span>'
+        }
+    })
+</script>
+
+</html>
