@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生命周期</title>
+</head>
+
+<body>
+    <div id="demo">
+        <button>destroy VUE</button>
+        <p v-show="isShow">xxxx</p>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            data() {
+                return {
+                    isShow: true
+                }
+            },
+            mounted() {
+                /**
+                界面初始显示之后立即回调
+                一般在此 执行异步操作 发ajax请求/启动定时器/订阅消息/绑定自定义监听事件
+                */
+                setInerval(() => {
+                    this.isShow = !this.isShow
+                }, 1000)
+            },
+        }).$mount('#demo')
+    </script>
+</body>
+
+</html>
