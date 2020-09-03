@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件监听</title>
+</head>
+
+<body>
+    <div id="demo">
+        <h2>监听事件</h2>
+        <div>
+            <button @click='count+=1'>+1</button>
+            <button v-on:click="count+=2">+2</button>
+        </div>
+        <div>点击了{{count}}次</div>
+        <div>
+            <h2>事件内联方法</h2>
+            <button @click='say("hi")'>say hi</button>
+            <button @click='say("what")'>say what</button>
+            <button @click='say(3000)'>say i love u 3000 times</button>
+        </div>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#demo',
+            data: {
+                count: 0
+            },
+            methods: {
+                say(msg) {
+                    if (isNaN(msg))
+                        console.log(msg)
+                    else
+                        console.log(`i love u ${msg} times`)
+                },
+                getRandomColor() {
+                    return `rgb(${Math.round(Math.random()*255)},
+                    ${Math.round(Math.random()*255)},${Math.round(Math.random()*255)})`
+                },
+                changeColor: function() {
+                    console.log(e.target);
+                    e.target.style.color = this.getRandomColor()
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

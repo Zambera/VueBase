@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <div>
+            <select name="" id="" v-model="selImg">
+        <option :value='img.id' v-for="img in imgs" :key="img.id">{{img.name}}</option>
+      </select>
+        </div>
+        <!-- <img v-for="img in imgs" v-if="selImg==img.id" :src="img.src" alt=""> -->
+        <img :src="imgs[selImg-1].src" alt="">
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#demo',
+            data: {
+                selImg: 1,
+                imgs: [{
+                    id: 1,
+                    name: '春',
+                    src: './1.jpg'
+                }, {
+                    id: 2,
+                    name: '夏',
+                    src: './2.jpg'
+                }, {
+                    id: 3,
+                    name: '秋',
+                    src: './3.jpg'
+                }, {
+                    id: 4,
+                    name: '冬',
+                    src: './4.jpg'
+                }, ]
+            }
+        })
+    </script>
+</body>
+
+</html>
