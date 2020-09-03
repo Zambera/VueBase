@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tab栏切换</title>
+    <style>
+        ul {
+            position: relative;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        
+        ul li {
+            list-style: none;
+            float: left;
+            width: 100px;
+            background-color: #fea400;
+            height: 30px;
+            border: 1px solid #cccccc;
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            line-height: 30px;
+            text-align: center;
+        }
+        
+        .normal {
+            background-color: #fea400;
+        }
+        
+        .active {
+            background: pink;
+        }
+        
+        .line {
+            width: 102px;
+            height: 4px;
+            position: absolute;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demo">
+        <ul>
+            <li :class='{active:ac==1}' @click='ac=1'>tab1</li>
+            <li :class='{active:ac==2}' @click='ac=2'>tab2</li>
+            <li :class='{active:ac==3}' @click='ac=3'>tab3</li>
+        </ul>
+        <div class="line" :style='{left:lineP+"px",transition:"left ease-in-out .5s"}'></div>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#demo',
+            data: {
+                ac: 1,
+            },
+            computed: {
+                lineP() {
+                    return 8 + (this.ac - 1) * 102
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

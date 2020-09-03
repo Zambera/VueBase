@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>spirit</title>
+    <style>
+        .icon {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: url('./img/icon1.png') no-repeat;
+        }
+        
+        .iconrain {
+            background-position: -80px 0;
+        }
+        
+        .faceicon {
+            display: inline-block;
+            width: 250px;
+            height: 250px;
+            background: url('./img/icon2.jpg') no-repeat;
+        }
+        
+        .faceicon-sb {
+            background-position: -250px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demo">
+        <span class="icon"></span>
+        <span class="icon iconrain"></span>
+        <span class="faceicon"></span>
+        <span :class="[icon1,icon2]" @click='changeIcon'></span>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#demo',
+            data: {
+                icon1: 'faceicon',
+                icon2: 'faceicon-sb',
+            },
+            methods: {
+                changeIcon() {
+                    if (this.icon1 == 'faceicon') {
+                        this.icon1 = 'icon'
+                        this.icon2 = 'iconrain'
+                    } else {
+                        this.icon1 = 'faceicon'
+                        this.icon2 = 'faceicon-sb'
+
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

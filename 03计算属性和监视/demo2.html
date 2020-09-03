@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo">
+        <table>
+            <tr>
+                <td>姓</td>
+                <td><input type="text" v-model="lastName"></td>
+            </tr>
+            <tr>
+                <td>名</td>
+                <td><input type="text" v-model="firstName"></td>
+            </tr>
+        </table>
+        <div>{{lastName+firstName}}</div>
+        <div :style='{color:fontColor}'>{{fullName()}}</div>
+        <div :style='{color:fontColor}'>{{fullName2}}</div>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#demo',
+            data: {
+                fontColor: 'black',
+                lastName: '',
+                firstName: '',
+            },
+            methods: {
+                fullName() {
+                    if (this.lastName == '张') {
+                        this.fontColor = 'red'
+                    } else {
+                        this.fontColor = 'black'
+                    }
+                    return this.lastName + this.firstName
+
+                }
+            },
+            computed: {
+                fullName2() {
+                    if (this.lastName == '张') {
+                        this.fontColor = 'red'
+                    } else {
+                        this.fontColor = 'black'
+                    }
+                    return this.lastName + this.firstName
+
+                }
+
+            },
+        })
+    </script>
+</body>
+
+</html>
