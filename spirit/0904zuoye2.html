@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画添加</title>
+    <style>
+        li {
+            height: 50px;
+            border: 1px dashed #555;
+            line-height: 50px;
+            width: 500px;
+            position: relative;
+            margin: 5px 0;
+        }
+        
+        li:hover {
+            background-color: orange;
+            transition: all 2s;
+        }
+        
+        .v-enter,
+        .v-leave-to {
+            top: 300px;
+            opacity: 0;
+        }
+        
+        .v-enter-to,
+        .v-leave {
+            top: 0;
+            opacity: 1;
+        }
+        
+        .v-enter-active,
+        .v-leave-active {
+            transition: all 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="demo">
+        <label for="">id:
+    <input type="text" v-model="id">
+  </label>
+        <label for="">name:
+    <input type="text" v-model="name">
+  </label>
+        <button @click='add'>添加</button>
+        <transition-group tag="ul" appear>
+            <li @click='msgs.splice(index,1)' v-for="(msg, index) in msgs" :key="msg">id:{{msg.id}}------name:{{msg.name}}</li>
+
+        </transition-group>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        // Vue.component
+        new Vue({
+            el: '#demo',
+            data: {
+                id: '',
+                name: '',
+                msgs: [{
+                    id: 1,
+                    name: '张三'
+                }, {
+                    id: 2,
+                    name: '李四'
+                }, {
+                    id: 3,
+                    name: '王五'
+                }, ]
+            },
+            methods: {
+                add() {
+                    this.msgs.push({
+                        id: this.id,
+                        name: this.name
+                    })
+                    this.id = ''
+                    this.name = ''
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

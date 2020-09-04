@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="../js/vue.js"></script>
+    <script type="text/x-tamplate" id="myBtn">
+        <button @click='count++' v-if="lang=='zh'">点击了按钮{{count}}次</button>
+        <button @click='count++' v-else>click {{count}} times</button>
+    </script>
+    <div id="demo">
+        <count-btn lang="zh"></count-btn>
+        <count-btn lang="en"></count-btn>
+        <count-btn :lang="currentLang"> </count-btn>
+        <button @click='currentLang=currentLang=="en"?"zh":"en"'>切换语言</button>
+    </div>
+    <script>
+        Vue.component('CountBtn', {
+            template: '#myBtn',
+            data: function() {
+                return {
+                    count: 0
+                }
+            },
+            props: ['lang']
+        })
+        new Vue({
+            el: '#demo',
+            data: {
+                currentLang: 'zh'
+            }
+        })
+    </script>
+</body>
+
+</html>

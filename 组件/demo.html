@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zujian</title>
+</head>
+
+<body>
+    <div id="demo">
+        <button @click='count++'>点击了按钮{{count}}次</button>
+        <count-button></count-button>
+        <count-button></count-button>
+        <count-button></count-button>
+        <CountButton></CountButton>
+        <CountButton></CountButton>
+        <CountButton></CountButton>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        /**组件定义 注意事项
+                      
+                    
+                      */
+        Vue.component('countButton', {
+            template: "<button @click='count++'>点击了按钮{{count}}次</button>",
+            data: function() {
+                //组件中的数据必须是函数
+                return {
+                    count: 0
+                }
+            }
+        })
+        new Vue({
+            el: '#demo',
+            data: {
+                count: 0
+            }
+        })
+    </script>
+</body>
+
+</html>

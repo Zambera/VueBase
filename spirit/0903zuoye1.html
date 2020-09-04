@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>tab栏切换</title>
     <style>
+        #demo {
+            position: relative;
+        }
+        
         ul {
             position: relative;
             overflow: hidden;
@@ -38,7 +42,41 @@
             width: 102px;
             height: 4px;
             position: absolute;
+            bottom: 0;
             background-color: red;
+        }
+        
+        .content {
+            width: 600px;
+            position: absolute;
+            height: 200px;
+            background-color: cadetblue;
+        }
+        
+        .v-enter {
+            left: 600px;
+            opacity: 0;
+        }
+        
+        .v-enter-to {
+            left: 0px;
+            opacity: 1;
+        }
+        
+        .v-leave-to {
+            left: -600px;
+            opacity: 0;
+        }
+        
+        .v-enter-active,
+        .v-leave-active {
+            /* opacity: 1; */
+            transition: all 1s;
+        }
+        
+        .v-leave {
+            left: 0px;
+            opacity: 1;
         }
     </style>
 </head>
@@ -49,8 +87,13 @@
             <li :class='{active:ac==1}' @click='ac=1'>tab1</li>
             <li :class='{active:ac==2}' @click='ac=2'>tab2</li>
             <li :class='{active:ac==3}' @click='ac=3'>tab3</li>
+            <div class="line" :style='{left:lineP+"px",transition:"left ease-in-out .5s"}'></div>
         </ul>
-        <div class="line" :style='{left:lineP+"px",transition:"left ease-in-out .5s"}'></div>
+        <transition>
+            <div :key="1" v-if="ac==1" class="content">content1</div>
+            <div :key="2" v-if="ac==2" class="content">content2</div>
+            <div :key="3" v-if="ac==3" class="content">content3</div>
+        </transition>
     </div>
     <script src="../js/vue.js"></script>
     <script>
@@ -61,7 +104,7 @@
             },
             computed: {
                 lineP() {
-                    return 8 + (this.ac - 1) * 102
+                    return (this.ac - 1) * 102
                 }
             },
         })
